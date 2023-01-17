@@ -12,12 +12,14 @@ class HospitalPatient(models.Model):
     notes = fields.Text(string="Notes",tracking=True)
     gender = fields.Selection([('male',"Male"),('female','Female'),('others','Others')],string="Gender",tracking=True)
     capitalized_name = fields.Char(string='Capitalized Name',compute='_compute_capitalized_name',store=True) # becomes readonly and not stored in db by default
+    ref = fields.Char(string="Reference",default=lambda self:_('New'))
 
 
     @api.model_create_multi
     def create(self,vals_list): # inherit create method
         # we can edit the datas to be stored
-        # for vals in vals_list:
+        for vals in vals_list:
+            vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
             # vals['gender'] = 'female'
         return super(HospitalPatient,self).create(vals_list)
 

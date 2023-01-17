@@ -8,6 +8,9 @@
             <form string="Hospital">
                 <sheet>
                     <group>
+                    <div class="oe_title">
+                        <h1><field name="ref" readonly="1"/></h1>
+                    </div>
                         <group>
                             <field name="name"/>                            
                             <field name="age"/>                                                    
@@ -36,6 +39,7 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="ref"/>
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
