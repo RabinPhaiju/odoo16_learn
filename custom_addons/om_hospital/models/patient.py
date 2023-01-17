@@ -10,6 +10,7 @@ class HospitalPatient(models.Model):
     is_child = fields.Boolean(string="Is Child?",tracking=True)
     notes = fields.Text(string="Notes",tracking=True)
     gender = fields.Selection([('male',"Male"),('female','Female'),('others','Others')],string="Gender",tracking=True)
+    capitalized_name = fields.Char(string='Capitalized Name',compute='_compute_capitalized_name',store=True) # becomes readonly and not stored in db by default
 
 
     @api.onchange('age')
@@ -18,3 +19,12 @@ class HospitalPatient(models.Model):
             self.is_child = True
         else:
             self.is_child = False
+        
+    @api.depends('name')
+    def _compute_capitalized_name(self):
+        # runs after saving if depends is not added
+        for rec in self:
+            if rec.name:
+                rec.capitalized_name = rec.name.upper()
+            else:
+                rec.capitalized_name = ""

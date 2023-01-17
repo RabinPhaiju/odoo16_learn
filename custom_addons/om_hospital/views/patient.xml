@@ -15,6 +15,7 @@
                         <group>
                             <field name="is_child"/>                            
                             <field name="gender"/>                            
+                            <field name="capitalized_name"/>                            
                         </group>
                         <group>
                             <field name="notes"/>                            
@@ -38,6 +39,7 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
+                <field name="capitalized_name"/>                            
             </tree>
         </field>
     </record>
