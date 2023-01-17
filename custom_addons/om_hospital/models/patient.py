@@ -1,4 +1,5 @@
-from odoo import api,fields,models
+from odoo import api,fields,models,_
+from odoo.exceptions import ValidationError
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -28,3 +29,9 @@ class HospitalPatient(models.Model):
                 rec.capitalized_name = rec.name.upper()
             else:
                 rec.capitalized_name = ""
+
+    @api.constrains('is_child','age')
+    def _check_child_age(self):
+        for rec in self:
+            if rec.is_child and rec.age == 0:
+                raise ValidationError(_("Age has to be recorded !"))
