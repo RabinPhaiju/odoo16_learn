@@ -14,6 +14,13 @@ class HospitalPatient(models.Model):
     capitalized_name = fields.Char(string='Capitalized Name',compute='_compute_capitalized_name',store=True) # becomes readonly and not stored in db by default
 
 
+    @api.model_create_multi
+    def create(self,vals_list): # inherit create method
+        # we can edit the datas to be stored
+        # for vals in vals_list:
+            # vals['gender'] = 'female'
+        return super(HospitalPatient,self).create(vals_list)
+
     @api.onchange('age')
     def _onchange_age(self):
         if self.age <= 10:
