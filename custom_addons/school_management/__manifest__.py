@@ -10,10 +10,10 @@
 'website': 'http://www.rabinphaiju15@gmail.com',
 'category': 'Tools',
 'version': '16.0.1.0.0',
-'depends':['base','contacts','hr','account'],
+'depends':['base','contacts','hr','account','mail'],
 'data': [
-    'views/school.xml',
     'security/ir.model.access.csv',
+    'views/school.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],

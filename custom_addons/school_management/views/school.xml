@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="school_class_form_view" model="ir.ui.view">
+    <record id="view_school_class_form" model="ir.ui.view">
         <field name="name">school.student.form</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
@@ -8,21 +8,74 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>                            
                             <field name="full_name"/>                            
-                            <field name="class_id"/>                            
                             <field name="division"/>                            
+                        </group>
+                        <group>
+                            <field name="class_id"/>                            
+                            <field name="number"/>                            
+                        </group>
+                        <group>
+                            <field name="float_no"/>                            
+                            <field name="price"/>                            
+                            <field name="active"/>                            
+                        </group>
+                        <group>
+                            <field name="date"/>                            
+                            <field name="date_time"/>                            
+                            <field name="yes_no"/>                            
+                        </group>
+                        <group>
+                            <field name="name"/>                            
+                            <field name="partner_id"/>                            
+                            <field name="currency_id"/>                            
+                        </group>
+                        <group>
+                            <field name="product_ids"/>                            
+                        </group>
+                        <group>
+                            <field name="image"/>                            
+                        </group>
+                        <group>
+                            <field name="document"/>                            
                         </group>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" options="{'post_refresh':'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>
 
-    <record id="action_student" model="ir.actions.act_window">
+    <!-- view_school_student_tree -->
+    <record id="view_school_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="division"/>
+                <field name="full_name"/>
+                <field name="class_id"/>
+                <field name="number"/>
+                <field name="float_no"/>                            
+                <field name="price"/>                            
+                <field name="active"/>                             
+                <field name="date"/>                             
+                <field name="yes_no"/>                             
+                <field name="name"/>                             
+                <field name="partner_id"/>                             
+                <field name="currency_id"/>                             
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_school_student" model="ir.actions.act_window">
         <field name="name">Student</field>
+        <field name="type">ir.actions.act_window</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face" >
             Create School details
@@ -30,7 +83,20 @@
         </field>
     </record>
 
-    <menuitem id="school_menu" name="School"/>
-    <menuitem id="school_exams_menu" parent="school_menu" name="School" action="action_student" sequence="6"/>
+    <menuitem id="menu_school_root" 
+                name="School"
+                sequence="10"/>
+
+    <menuitem id="menu_school_exam" 
+                name="Exam" 
+                parent="menu_school_root" 
+                sequence="10"/>
+
+     <!-- sub_menu -->
+    <menuitem id="menu_students" 
+            name="Students" 
+            parent="menu_school_exam"
+            action="action_school_student" 
+            sequence="10"/>
 
 </odoo>
