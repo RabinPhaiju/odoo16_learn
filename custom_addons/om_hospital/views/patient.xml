@@ -12,6 +12,7 @@
                         <h1><field name="ref" readonly="1"/></h1>
                     </div>
                         <group>
+                            <field name="ref"/>                            
                             <field name="name"/>                            
                             <field name="age"/>                                                    
                         </group>
