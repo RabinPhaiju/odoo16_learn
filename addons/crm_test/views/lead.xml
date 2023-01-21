@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- view_hospital_patient_form
+    <record id="view_hospital_patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="Hospital">
+                <sheet>
+                    <group>
+                    <div class="oe_title">
+                        <h1><field name="ref" readonly="1"/></h1>
+                    </div>
+                        <group>
+                            <field name="name"/>                            
+                            <field name="age"/>                                                    
+                        </group>
+                        <group>
+                            <field name="is_child"/>                            
+                            <field name="gender"/>                            
+                            <field name="capitalized_name"/>                            
+                        </group>
+                        <group>
+                            <field name="notes"/>                            
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record> -->
+
+    <record id="view_crm_lead_tree" model="ir.ui.view">
+        <field name="name">crm.lead.tree</field>
+        <field name="model">crm.lead</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>                            
+                <field name="email_from"/>
+                <field name="phone"/>
+                <field name="age"/>
+                <field name="contact_name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_crm_lead" model="ir.actions.act_window">
+        <field name="name">My Pipeline</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+            Create CRM Test Lead
+            </p>
+        </field>
+    </record>
+
+
+    <!-- sub_menu -->
+    <menuitem id="menu_leads" 
+            name="Pipeline" 
+            parent="menu_crm_sales"
+            action="action_crm_lead"
+            sequence="10"/>
+
+
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_crmt_root" 
+                name="CRM Test" 
+                sequence="10"/>
+    
+    <menuitem id="menu_crm_sales" 
+                name="Sales"
+                parent="menu_crmt_root"
+                sequence="10"/>
+
+</odoo>
