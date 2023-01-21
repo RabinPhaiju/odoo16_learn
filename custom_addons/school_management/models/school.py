@@ -10,6 +10,7 @@ class School(models.Model):
 
     division = fields.Char(string='Division',tracking=True)
     full_name = fields.Char(string='FullName',tracking=True)
+    address = fields.Char(string='Address',tracking=True)
 
     class_id = fields.Integer(string='Class Id',tracking=True) # default=0
     number = fields.Integer(string='Value',default=0,tracking=True)
@@ -34,6 +35,7 @@ class School(models.Model):
     currency_id = fields.Many2one('res.currency',string='Currency')
 
     product_ids = fields.Many2many('product.product',string="Products") # many item to choose
+    tags = fields.Many2many('account.account.tag',string="Tags") # many item to choose
 
     # school_line_ids = fields.One2many('school.student.line','school.id')
 
@@ -55,3 +57,6 @@ class School(models.Model):
                 # can be use diff constrains
                 raise ValidationError(_('Invalid Class!'))
 
+    @api.onchange('name')
+    def _onchange_name(self):
+        self.address = self.name.street
