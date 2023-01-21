@@ -59,7 +59,11 @@
         <field name="name">school.student.tree</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="School Student"
+                decoration-danger="date &lt; current_date"
+                decoration-success="date == current_date"
+                decoration-muted="date &gt; current_date"
+            >
                 <field name="division"/>
                 <field name="full_name"/>
                 <field name="class_id"/>
