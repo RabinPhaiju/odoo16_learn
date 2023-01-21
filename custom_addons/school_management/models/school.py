@@ -14,6 +14,7 @@ class School(models.Model):
 
     class_id = fields.Integer(string='Class Id',tracking=True) # default=0
     number = fields.Integer(string='Value',default=0,tracking=True)
+    age = fields.Integer(string='Age',tracking=True,compute='_compute_age',store=True) # becomes readonly and not stored in db by default
 
     float_no = fields.Float(string="Float",default=1.1)
 
@@ -21,7 +22,7 @@ class School(models.Model):
 
     active = fields.Boolean(string='Active',default=False)
 
-    date = fields.Date(string="Date")
+    date = fields.Date(string="Date",default=fields.date.today())
 
     date_time = fields.Datetime(string="DateTime")
 
@@ -31,7 +32,7 @@ class School(models.Model):
         ])
 
     name = fields.Many2one('res.partner',string='Student') # one item to choose
-    partner_id = fields.Many2one('res.partner',string='Partner')
+    partner_id = fields.Many2one('res.partner',string='Partner',default=lambda l:l.env.user)
     currency_id = fields.Many2one('res.currency',string='Currency')
 
     product_ids = fields.Many2many('product.product',string="Products") # many item to choose
@@ -60,3 +61,12 @@ class School(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         self.address = self.name.street
+
+    @api.depends('date')
+    def _compute_age(self):
+        # runs after saving if depends is not added
+        self.age = False
+        today = fields.date.today()
+        for rec in self:
+            if rec.date:
+                rec.age = relativedelta(today,rec.date).years
