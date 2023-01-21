@@ -92,6 +92,18 @@
         </field>
     </record>
 
+    <record id="action_school_student_result" model="ir.actions.act_window">
+        <field name="name">Student Result</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+            Create School Result details
+            </p>
+        </field>
+    </record>
+
     <menuitem id="menu_school_root" 
                 name="School"
                 sequence="10"/>
@@ -101,11 +113,22 @@
                 parent="menu_school_root" 
                 sequence="10"/>
 
+    <menuitem id="menu_school_result" 
+                name="Result" 
+                parent="menu_school_root" 
+                sequence="10"/>
+
      <!-- sub_menu -->
     <menuitem id="menu_students" 
             name="Students" 
             parent="menu_school_exam"
             action="action_school_student" 
+            sequence="10"/>
+
+<menuitem id="menu_students_results" 
+            name="Final Result" 
+            parent="menu_school_result"
+            action="action_school_student_result" 
             sequence="10"/>
 
 </odoo>
