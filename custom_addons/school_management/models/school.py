@@ -1,4 +1,6 @@
-from odoo import models,fields
+from odoo import models,fields,api,_
+from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError
 
 class School(models.Model):
     _name = 'school.student'
@@ -41,3 +43,15 @@ class School(models.Model):
 
     def action_accept(self):
         print('action_accept')
+
+
+    @api.constrains('date','class_id')
+    def _validation_constrains(self):
+        today = fields.date.today()
+        for rec in self:
+            if rec.date > today:
+                raise ValidationError(_('Dob is greater than today!'))
+            elif rec.class_id > 12 or rec.class_id < 1:
+                # can be use diff constrains
+                raise ValidationError(_('Invalid Class!'))
+
