@@ -5,7 +5,5 @@
             <field name="phone">11111111</field>
             <field name="email">test@email.com</field>
         </record>
-        <function model="res.model" name="test_method">
-        </function>
     </data>
 </odoo>

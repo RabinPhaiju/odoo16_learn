@@ -22,7 +22,8 @@ class School(models.Model):
 
     active = fields.Boolean(string='Active',default=False)
 
-    date = fields.Date(string="Date",default=fields.date.today())
+    dob = fields.Date(string="dob")
+    admission_date = fields.Date(string="Admission Date",default=fields.date.today())
 
     date_time = fields.Datetime(string="DateTime")
 
@@ -48,12 +49,12 @@ class School(models.Model):
         print('action_accept')
 
 
-    @api.constrains('date','class_id')
+    @api.constrains('admission_date','class_id')
     def _validation_constrains(self):
         today = fields.date.today()
         for rec in self:
-            if rec.date > today:
-                raise ValidationError(_('Dob is greater than today!'))
+            if rec.admission_date > today:
+                raise ValidationError(_('Admission date is greater than today!'))
             elif rec.class_id > 12 or rec.class_id < 1:
                 # can be use diff constrains
                 raise ValidationError(_('Invalid Class!'))
@@ -62,14 +63,11 @@ class School(models.Model):
     def _onchange_name(self):
         self.address = self.name.street
 
-    @api.depends('date')
+    @api.depends('dob')
     def _compute_age(self):
         # runs after saving if depends is not added
         self.age = False
         today = fields.date.today()
         for rec in self:
-            if rec.date:
-                rec.age = relativedelta(today,rec.date).years
-
-    def test_method(self):
-        """conents"""
+            if rec.dob:
+                rec.age = relativedelta(today,rec.dob).years

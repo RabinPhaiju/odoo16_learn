@@ -21,7 +21,8 @@
                             <field name="active"/>                            
                         </group>
                         <group>
-                            <field name="date"/>                            
+                            <field name="admission_date"/>                            
+                            <field name="dob"/>                            
                             <field name="age"/>                            
                             <field name="date_time"/>                            
                             <field name="yes_no"/>                            
@@ -60,9 +61,9 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <tree string="School Student"
-                decoration-danger="date &lt; current_date"
-                decoration-success="date == current_date"
-                decoration-muted="date &gt; current_date"
+                decoration-danger="dob &lt; current_date"
+                decoration-success="dob == current_date"
+                decoration-muted="dob &gt; current_date"
             >
                 <field name="division"/>
                 <field name="full_name"/>
@@ -71,7 +72,7 @@
                 <field name="float_no"/>                            
                 <field name="price"/>                            
                 <field name="active"/>                             
-                <field name="date"/>                             
+                <field name="dob"/>                             
                 <field name="yes_no"/>                             
                 <field name="name"/>                             
                 <field name="partner_id"/>                             
@@ -92,11 +93,28 @@
         </field>
     </record>
 
+    <!-- view_school_student_calendar -->
+      <record id="view_school_student_calendar" model="ir.ui.view">
+        <field name="name">school.student.calendar</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <calendar string="School"
+                        date_start="dob"
+                        event_open_popup="true"
+                        mode="month"
+                        color="name"
+                        quick_add="False">
+                <field name="name"/>
+                <field name="class_id"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="action_school_student" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,kanban,form,graph</field>
+        <field name="view_mode">tree,kanban,calendar,form,graph</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face" >
             Create School details
