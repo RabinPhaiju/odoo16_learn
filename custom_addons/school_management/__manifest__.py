@@ -14,6 +14,7 @@
 'data': [
     'data/data.xml',
     'security/ir.model.access.csv',
+    'security/security.xml',
     'views/school.xml',
 ],
 'demo':[],
