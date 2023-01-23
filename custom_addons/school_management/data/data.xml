@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="0">
+        <record id="partner_1" model="res.partner">
+            <field name="name">Test Parner Data</field>
+            <field name="phone">11111111</field>
+            <field name="email">test@email.com</field>
+        </record>
+        <function model="res.model" name="test_method">
+        </function>
+    </data>
+</odoo>

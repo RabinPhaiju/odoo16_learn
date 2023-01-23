@@ -70,3 +70,6 @@ class School(models.Model):
         for rec in self:
             if rec.date:
                 rec.age = relativedelta(today,rec.date).years
+
+    def test_method(self):
+        """conents"""
