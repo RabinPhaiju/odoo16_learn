@@ -80,11 +80,23 @@
         </field>
     </record>
 
+    <!-- view_school_student_graph -->
+    <record id="view_school_student_graph" model="ir.ui.view">
+        <field name="name">school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type='xml'>
+            <graph string="School Analysis">
+                <field name="name" type="row" />
+                <field name="class_id" type="measure" />
+            </graph>
+        </field>
+    </record>
+
     <record id="action_school_student" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face" >
             Create School details
