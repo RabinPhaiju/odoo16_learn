@@ -16,6 +16,8 @@
     'security/ir.model.access.csv',
     'security/security.xml',
     'views/school.xml',
+    'report/school_report.xml',
+    'report/student_template.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
