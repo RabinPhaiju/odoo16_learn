@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="tmp_leads_data" name="Leads Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container"><br/>
+                    <center>
+                        <h3>Crm Lead Details</h3>
+                    </center><br/>
+                    <table class="table-striped table">
+                        <thead style="font-size:22px;">
+                            <tr>
+                                <h6><b>
+                                    <th>Partner Id</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Probability</th>
+                                </b></h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data_records" t-as="lead">
+                                <tr>
+                                    <td><span t-esc="lead.partner_id"/></td>
+                                    <td><span t-esc="lead.email_from"/></td>
+                                    <td><span t-esc="lead.phone"/></td>
+                                    <td><span t-esc="lead.probability"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

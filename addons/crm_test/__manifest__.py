@@ -16,6 +16,7 @@
     'security/ir.model.access.csv',
     'views/menu.xml',
     'views/lead.xml',
+    'views/leadsdata.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],

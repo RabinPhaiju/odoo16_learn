@@ -1,7 +1,7 @@
 from odoo import api,fields,models,_
 from odoo.exceptions import ValidationError
 
-class HospitalPatient(models.Model):
+class CrmLead(models.Model):
     # _name = "crm.lead.test"
     _inherit = 'crm.lead'
     _description = "crm lead test"
