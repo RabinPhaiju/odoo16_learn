@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="inherited_res_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                <!-- where vat is Tax ID in contact form -->
+                    <field name="age"/>
+                    <field name="is_child"/>
+                </xpath>
+            </field>
+        </record>
+   </data>
+</odoo>
