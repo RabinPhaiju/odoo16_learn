@@ -1,6 +1,6 @@
 from odoo import models,fields,api,_
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError,UserError
 
 class School(models.Model):
     _name = 'school.student'
@@ -47,6 +47,13 @@ class School(models.Model):
 
     def action_accept(self):
         print('action_accept')
+
+    
+    def unlink(self):
+        for student in self:
+            if student.class_id >=12:
+                raise UserError(_('You cannot delete a student of class 12 or higher for record purpose'))
+        return super(School,self).unlink()
 
 
     @api.constrains('admission_date','class_id')
