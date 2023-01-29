@@ -68,14 +68,7 @@
                 <field name="division"/>
                 <field name="full_name"/>
                 <field name="class_id"/>
-                <field name="number"/>
-                <field name="float_no"/>                            
-                <field name="price"/>                            
-                <field name="active"/>                             
                 <field name="dob"/>                             
-                <field name="yes_no"/>                             
-                <field name="name"/>                             
-                <field name="partner_id"/>                             
                 <field name="currency_id"/>                             
             </tree>
         </field>

@@ -16,6 +16,7 @@
     'security/ir.model.access.csv',
     'security/security.xml',
     'views/school.xml',
+    'views/school_items.xml',
     'report/school_report.xml',
     'report/student_template.xml',
 ],
