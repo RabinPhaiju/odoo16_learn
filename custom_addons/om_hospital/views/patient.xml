@@ -8,9 +8,6 @@
             <form string="Hospital">
                 <sheet>
                     <group>
-                    <div class="oe_title">
-                        <h1><field name="ref" readonly="1"/></h1>
-                    </div>
                         <group>
                             <field name="ref"/>                            
                             <field name="name"/>                            
@@ -23,6 +20,9 @@
                         </group>
                         <group>
                             <field name="notes"/>                            
+                        </group>
+                        <group>
+                            <field name="active"/>                            
                         </group>
                     </group>
                 </sheet>
@@ -64,6 +64,8 @@
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
                 <filter name="filter_others" string="Others" domain="[('gender', '=', 'others')]"/>
                 <separator/>
+                <filter name="filter_archive" string="Archive" domain="[('active', '=', False)]"/>
+                <separator/>
                 <!-- sperator works as and_operator -->
                 <filter name="filter_childs" string="Childs" domain="[('is_child', '=', True)]"/>
 
@@ -90,7 +92,7 @@
         </field>
     </record>
 
-    <!-- sub_menu -->
+    <!-- sub_menu patients -->
     <menuitem id="menu_patients" 
             name="Patients" 
             parent="menu_hospital_operations"

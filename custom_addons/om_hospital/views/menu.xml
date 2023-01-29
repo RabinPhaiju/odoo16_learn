@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_hospital_root" 
-                name="Hospital" 
+                name="Hospital"
                 sequence="10"/>
     
     <menuitem id="menu_hospital_operations" 
-                name="Operations"
+                name="Patient Records"
                 parent="menu_hospital_root"
                 sequence="10"/>
 

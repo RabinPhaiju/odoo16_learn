@@ -14,6 +14,8 @@ class HospitalPatient(models.Model):
     capitalized_name = fields.Char(string='Capitalized Name',compute='_compute_capitalized_name',store=True) # becomes readonly and not stored in db by default
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
 
+    active = fields.Boolean(string="Active",default=True) # for archive and un_archive
+
 
     @api.model_create_multi
     def create(self,vals_list): # inherit create method
