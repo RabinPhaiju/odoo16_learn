@@ -83,7 +83,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">tree,form,kanban</field>
-        <field name="context">{'search_default_filter_child':1}</field>
+        <field name="context">{'search_default_filter_male':1}</field>
+        <!-- {'search_default_(filter_name)':1} -->
         <field name="search_view_id" ref="om_hospital.view_hospital_patient_search" />
 
         <field name="help" type="html">
