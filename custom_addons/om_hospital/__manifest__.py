@@ -18,6 +18,7 @@
     'views/menu.xml',
     'views/patient.xml',
     'views/female_patient.xml',
+    'views/appointment.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
