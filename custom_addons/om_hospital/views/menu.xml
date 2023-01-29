@@ -4,7 +4,7 @@
                 name="Hospital"
                 sequence="10"/>
     
-    <menuitem id="menu_hospital_operations" 
+    <menuitem id="menu_hospital_patients" 
                 name="Patient Records"
                 parent="menu_hospital_root"
                 sequence="10"/>

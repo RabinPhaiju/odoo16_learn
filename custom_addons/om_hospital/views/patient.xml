@@ -42,9 +42,9 @@
             <tree>
                 <field name="ref"/>
                 <field name="name"/>
+                <field name="capitalized_name"/>                            
                 <field name="age"/>
                 <field name="gender"/>
-                <field name="capitalized_name"/>                            
             </tree>
         </field>
     </record>
@@ -56,6 +56,7 @@
         <field name="arch" type="xml">
             <search>
                 <!-- <field name="ref"/> -->
+                <!-- '|' or operator -->
                 <field name="name" filter_domain="['|', ('name','ilike',self),('ref','ilike',self)]"/>
                 <field name="age"/>
                 <field name="gender"/>
@@ -93,10 +94,10 @@
     </record>
 
     <!-- sub_menu patients -->
-    <menuitem id="menu_patients" 
-            name="Patients" 
-            parent="menu_hospital_operations"
+    <menuitem id="menu_patients"
+            name="Patients"
+            parent="menu_hospital_patients"
             action="action_hospital_patient"
-            sequence="10"/>
+            sequence="9"/>
 
 </odoo>

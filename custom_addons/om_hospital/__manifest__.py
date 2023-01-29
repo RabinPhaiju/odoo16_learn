@@ -17,6 +17,7 @@
     'data/sequence.xml',
     'views/menu.xml',
     'views/patient.xml',
+    'views/female_patient.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
