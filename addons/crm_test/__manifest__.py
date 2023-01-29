@@ -17,6 +17,7 @@
     'views/menu.xml',
     'views/lead.xml',
     'views/leadsdata.xml',
+    'views/leads_form.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
