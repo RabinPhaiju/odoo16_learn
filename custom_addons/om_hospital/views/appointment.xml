@@ -34,6 +34,18 @@
                             <field name="age"/>                        
                         </group>
                     </group>
+
+                    <notebook>
+                        <page name="prescription" string="Prescription">
+                            <group>
+                                <field name="age"/>
+                            </group>
+                        </page>
+                        <page name="pharmacy" string="Pharmacy">
+                            
+                        </page>
+                    </notebook>
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
