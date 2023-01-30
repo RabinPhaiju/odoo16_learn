@@ -13,8 +13,9 @@
             decoration-danger="priority == '0'">
                 <field name="ref"/>
                 <field name="patient_id"/>
-                <field name="appointment_time"/>
-                <field name="booking_date"/>
+                <field name="appointment_time" optional="show" />
+                <field name="booking_date" optional="hide"/>
+                <field name="prescription" optional="hide"/>
                 <field name="gender"/>
                 <field name="age"/>
                 <field name="priority"/>
