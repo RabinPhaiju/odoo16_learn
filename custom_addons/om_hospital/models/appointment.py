@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','mail.activity.mixin']
     _description = "Patient Appointment"
     _rec_name = "ref"
     # if model has attribute name, we dont need _rec_name else define _rec_name as any attribute field

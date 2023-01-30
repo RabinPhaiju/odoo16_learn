@@ -6,7 +6,11 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <!-- <tree create="0" delete="0" copy="0"  > -->
-            <tree>
+            <tree 
+            decoration-success="priority == '3'"
+            decoration-info="priority == '2'"
+            decoration-warning="priority == '1'"
+            decoration-danger="priority == '0'">
                 <field name="ref"/>
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
@@ -14,6 +18,7 @@
                 <field name="gender"/>
                 <field name="age"/>
                 <field name="priority"/>
+                <field name="activity_ids" widget="list_activity"/>
                 <field name="status" widget="badge"
                     decoration-success="status == 'done'" decoration-info="status in ('draft','in_consultation')"
                     decoration-danger="status == 'cancel'" />
@@ -62,6 +67,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
                     <field name="message_ids" options="{'post_refresh':'recipients'}"/>
                 </div>
             </form>
