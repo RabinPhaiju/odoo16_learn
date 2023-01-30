@@ -18,6 +18,12 @@ class HospitalAppointment(models.Model):
      # changing the related value will reflect to the related_field_model_value
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
     prescription = fields.Html(string="Prescription")
+    priority = fields.Selection([
+        ('0','Normal'),
+        ('1','Low'),
+        ('2','High'),
+        ('3','Very Hight'),
+    ],string="Priority",)
 
 
     @api.model_create_multi

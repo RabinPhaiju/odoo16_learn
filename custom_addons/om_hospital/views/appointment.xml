@@ -13,6 +13,7 @@
                 <field name="booking_date"/>
                 <field name="gender"/>
                 <field name="age"/>
+                <field name="priority"/>
             </tree>
         </field>
     </record>
@@ -33,6 +34,7 @@
                         <group>
                             <field name="gender"/>                            
                             <field name="age"/>                        
+                            <field name="priority" widget="priority" class="mr-2"/>                        
                         </group>
                     </group>
 
