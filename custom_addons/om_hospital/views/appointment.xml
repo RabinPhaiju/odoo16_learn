@@ -13,6 +13,7 @@
             decoration-danger="priority == '0'">
                 <field name="ref"/>
                 <field name="patient_id"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="appointment_time" optional="show" />
                 <field name="booking_date" optional="hide"/>
                 <field name="prescription" optional="hide"/>
@@ -41,13 +42,14 @@
                         <group>
                             <field name="ref"/>                            
                             <field name="patient_id"/>                            
-                            <field name="appointment_time"/>                            
-                            <field name="booking_date"/>     
+                            <field name="doctor_id" widget="many2one_avatar"/>
                             <button name="action_test" string="T_Button" type="object" 
                             help="This is help message.."
                                 confirm="Are you sure ??" class="oe_highlight"/>                       
                         </group>
                         <group>
+                            <field name="booking_date"/>     
+                            <field name="appointment_time"/>                            
                             <field name="gender"/>                            
                             <field name="age"/>                        
                             <field name="priority" widget="priority" class="mr-2"/>                        
