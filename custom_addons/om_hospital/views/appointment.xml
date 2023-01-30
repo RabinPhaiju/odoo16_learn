@@ -6,6 +6,7 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="ref"/>
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
@@ -23,6 +24,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="ref"/>                            
                             <field name="patient_id"/>                            
                             <field name="appointment_time"/>                            
                             <field name="booking_date"/>                            

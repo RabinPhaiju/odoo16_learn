@@ -13,3 +13,11 @@ class HospitalAppointment(models.Model):
     age = fields.Integer(string="Age",related='patient_id.age',readonly=False)
      # suggestion are ignored in related
      # changing the related value will reflect to the related_field_model_value
+    ref = fields.Char(string="Reference",default=lambda self:_('New'))
+
+
+    @api.model_create_multi
+    def create(self,vals_list):
+        for vals in vals_list:
+            vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
+        return super(HospitalAppointment,self).create(vals_list)

@@ -9,4 +9,13 @@
             <field name="padding">5</field>
         </record>
     </data>
+
+    <data noupdate="1">
+        <record id='sequence_hospital_appointment' model='ir.sequence'>
+            <field name="name">Hospital Appointment Sequence</field>
+            <field name="code">hospital.appointment</field>
+            <field name="prefix">HA</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
 </odoo>
