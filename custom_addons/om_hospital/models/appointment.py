@@ -5,6 +5,9 @@ class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
     _inherit = ['mail.thread']
     _description = "Patient Appointment"
+    _rec_name = "ref"
+    # if model has attribute name, we dont need _rec_name else define _rec_name as any attribute field
+    # if _rec_name or name field is not in class, It will show model_name,id in Many2one rel
 
     patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=True)
     appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now,tracking=True)    
