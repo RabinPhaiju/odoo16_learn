@@ -23,13 +23,20 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form string="Hospital Appointment">
+                <header>
+                    <field name="status" widget="statusbar" nolabel="1"
+                        options="{'clickable':'1'}" statusbar_visible="draft,in_consultation,done" />
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="ref"/>                            
                             <field name="patient_id"/>                            
                             <field name="appointment_time"/>                            
-                            <field name="booking_date"/>                            
+                            <field name="booking_date"/>     
+                            <button name="action_test" string="T_Button" type="object" 
+                            help="This is help message.."
+                                confirm="Are you sure ??" class="oe_highlight"/>                       
                         </group>
                         <group>
                             <field name="gender"/>                            

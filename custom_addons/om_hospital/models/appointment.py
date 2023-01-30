@@ -16,14 +16,18 @@ class HospitalAppointment(models.Model):
     age = fields.Integer(string="Age",related='patient_id.age',readonly=False)
      # suggestion are ignored in related
      # changing the related value will reflect to the related_field_model_value
-    ref = fields.Char(string="Reference",default=lambda self:_('New'))
+    ref = fields.Char(string="Reference",default=lambda self:_('New'),help="Reference of the appointment")
     prescription = fields.Html(string="Prescription")
     priority = fields.Selection([
         ('0','Normal'),
         ('1','Low'),
         ('2','High'),
-        ('3','Very Hight'),
-    ],string="Priority",)
+        ('3','Very Hight'),],string="Priority",default='0')
+    status = fields.Selection([
+        ('draft','Draft'),
+        ('in_consultation','In Consultation'),
+        ('done','Done'),
+        ('cancel','Cancel'),],string="Status",default='draft')
 
 
     @api.model_create_multi
@@ -31,3 +35,6 @@ class HospitalAppointment(models.Model):
         for vals in vals_list:
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super(HospitalAppointment,self).create(vals_list)
+
+    def action_test(self):
+        print('----------------------')
