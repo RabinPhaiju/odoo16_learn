@@ -37,4 +37,10 @@ class HospitalAppointment(models.Model):
         return super(HospitalAppointment,self).create(vals_list)
 
     def action_test(self):
-        print('----------------------')
+        return {
+            'effect':{
+                'fadeout':'slow',
+                'message':"Click successfull",
+                'type':'rainbow_man'
+            }
+        }
