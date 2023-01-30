@@ -17,6 +17,7 @@ class HospitalAppointment(models.Model):
      # suggestion are ignored in related
      # changing the related value will reflect to the related_field_model_value
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
+    prescription = fields.Html(string="Prescription")
 
 
     @api.model_create_multi
