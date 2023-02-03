@@ -19,6 +19,6 @@ class LeadData(http.Controller):
 
      @http.route('/create/crm_leads',type='http',auth="user",website=True)
      def create_crm_lead(self,**kw):
-          print('----------------------------',kw)
+          print('------------------------------------',kw)
           # request.env['crm.lead'].sudo().create(kw)
           return request.render("crm_test.leads_entry",{})

@@ -58,7 +58,8 @@
 
                     <notebook>
                         <page name="prescription" string="Prescription">
-                            <field name="prescription" placeholder="Enter a prescription"/>
+                            <field name="prescription" placeholder="Enter a prescription"
+                                options="{'collaborative': true}" />
                         </page>
                         <page name="pharmacy" string="Pharmacy">
                             <group>
