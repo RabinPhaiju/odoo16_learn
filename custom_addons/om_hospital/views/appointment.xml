@@ -12,6 +12,7 @@
             decoration-warning="priority == '1'"
             decoration-danger="priority == '0'"
             sample="1"
+            multi_edit="1"
             >
                 <field name="ref"/>
                 <field name="patient_id"/>
