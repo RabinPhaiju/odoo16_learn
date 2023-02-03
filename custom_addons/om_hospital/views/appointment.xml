@@ -37,8 +37,15 @@
         <field name="arch" type="xml">
             <form string="Hospital Appointment">
                 <header>
-                    <field name="status" widget="statusbar" nolabel="1"
-                        options="{'clickable':'1'}" statusbar_visible="draft,in_consultation,done" />
+                <button name="action_in_consultation" string="In Consultation" type="object"
+                attrs="{'invisible':[('status','!=','draft')]}"/>
+                <button name="action_done" string="Mark as Done" type="object"
+                    attrs="{'invisible':[('status','!=','in_consultation')]}"/>
+                <button name="action_cancel"  string="Cancel" type="object"
+                   attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/>
+
+                <field name="status" widget="statusbar" nolabel="1"
+                    options="{'clickable':'1'}" statusbar_visible="draft,in_consultation,done" />
                 </header>
                 <sheet>
                     <group>
