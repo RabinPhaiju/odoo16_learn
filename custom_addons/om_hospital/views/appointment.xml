@@ -10,7 +10,9 @@
             decoration-success="priority == '3'"
             decoration-info="priority == '2'"
             decoration-warning="priority == '1'"
-            decoration-danger="priority == '0'">
+            decoration-danger="priority == '0'"
+            sample="1"
+            >
                 <field name="ref"/>
                 <field name="patient_id"/>
                 <field name="doctor_id" widget="many2one_avatar_user"/>
