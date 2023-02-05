@@ -11,7 +11,7 @@
     ''',
 'author': 'Rabin Phaiju',
 'website': 'http://www.rabinphaiju15@gmail.com',
-'depends':['base','contacts','hr','account','mail'],
+'depends':['base','contacts','hr','account','mail','product'],
 'data': [
     'security/ir.model.access.csv',
     'data/sequence.xml',
