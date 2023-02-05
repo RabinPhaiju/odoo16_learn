@@ -31,6 +31,8 @@ class HospitalAppointment(models.Model):
         ('done','Done'),
         ('cancel','Cancel'),],string="Status",default='draft')
 
+    hide_sales_price = fields.Boolean(String="Hide Sales Price")
+
 
     @api.model_create_multi
     def create(self,vals_list):

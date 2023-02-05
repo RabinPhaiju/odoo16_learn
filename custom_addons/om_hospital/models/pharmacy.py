@@ -6,7 +6,7 @@ class AppointmentPharmacy(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
     _description = "Appointment Pharmacy Lines"
 
-    product_id = fields.Many2one('product.product')
-    price_unit = fields.Float(String="Price")
-    qty = fields.Integer(string="Quantity")
+    product_id = fields.Many2one('product.product',required=True)
+    price_unit = fields.Float(String="Price",related='product_id.list_price')
+    qty = fields.Integer(string="Quantity",default=1)
     appointment_id = fields.Many2one('hospital.appointment',string='Appointment')
