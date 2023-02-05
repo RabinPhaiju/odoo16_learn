@@ -17,7 +17,7 @@ class HospitalPatient(models.Model):
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
 
     active = fields.Boolean(string="Active",default=True) # for archive and un_archive
-
+    image = fields.Image(string="Image")
 
     @api.model_create_multi
     def create(self,vals_list): # inherit create method
