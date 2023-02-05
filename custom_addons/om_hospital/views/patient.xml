@@ -18,7 +18,9 @@
                         <group>
                             <field name="is_child"/>                            
                             <field name="gender"/>                            
-                            <field name="tag_ids" widget="many2many_tags"/>                            
+                            <field name="tag_ids" widget="many2many_tags"
+                                options="{'color_field':'color'}"/> 
+                                 <!-- color is coloumn name-->
                             <field name="capitalized_name"/>                            
                         </group>
                         <group>
