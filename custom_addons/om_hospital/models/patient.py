@@ -18,6 +18,7 @@ class HospitalPatient(models.Model):
 
     active = fields.Boolean(string="Active",default=True) # for archive and un_archive
     image = fields.Image(string="Image")
+    tag_ids = fields.Many2many('patient.tag',string="Tags")
 
     @api.model_create_multi
     def create(self,vals_list): # inherit create method
