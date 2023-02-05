@@ -23,10 +23,13 @@ class LeadData(http.Controller):
                'name':kw.get('name'),
                'age':9, #calculate
                'email':kw.get('email')}
-          request.env['res.partner'].sudo().create(val)
-          # res.partner ma add vayo
+          result = request.env['res.partner'].sudo().create(val)
 
-          # aba kasari crm.lead ma res.partner ko relation rakhne
+          val2={
+            'partner_id':result.id,
+             'name':kw.get('name'),
+          }
 
-
+          request.env['crm.lead'].sudo().create(val2)
+       
           return request.render("crm_test.lead_thanks",{})

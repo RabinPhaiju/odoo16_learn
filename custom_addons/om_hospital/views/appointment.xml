@@ -45,7 +45,7 @@
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/>
 
                 <field name="status" widget="statusbar" nolabel="1"
-                    options="{'clickable':'1'}" statusbar_visible="draft,in_consultation,done" />
+                    statusbar_visible="draft,in_consultation,done" />
                 </header>
                 <sheet>
                     <group>
