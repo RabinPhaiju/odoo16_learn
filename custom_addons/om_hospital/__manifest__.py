@@ -20,6 +20,7 @@
     'views/female_patient.xml',
     'views/appointment.xml',
     'views/website_form.xml',
+    'views/patient_tag.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
