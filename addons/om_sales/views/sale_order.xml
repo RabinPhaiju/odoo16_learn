@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="inherited_om_sale_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <!-- <field name="inherit_id" ref="sale.view_order_form" /> -->
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='payment_term_id']" position="after">
+                   <field name="confirmed_user_id"/>
+                </xpath> -->
+                <xpath expr="//field[@name='warehouse_id']" position="after">
+                   <field name="confirmed_user_id"/>
+                </xpath>
+            </field>
+        </record>
+   </data>
+
+    <record id="action_om_sales_order" model="ir.actions.act_window">
+        <field name="name">Sales Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+            Create Om Sale Order
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_om_sales_order" 
+            name="Sales Order" 
+            parent="menu_om_sales"
+            action="action_om_sales_order"
+            sequence="10"/>
+
+
+</odoo>

@@ -3,6 +3,7 @@
 
 'name': "School Management",
 'summary': """School Management Software""",
+'sequence':-97,
 'description':"""
     Treating Schools
     """,
