@@ -7,6 +7,11 @@
     <menuitem id="menu_hospital_patients" 
                 name="Patient Records"
                 parent="menu_hospital_root"
-                sequence="10"/>
+                sequence="8"/>
+
+    <menuitem id="menu_hospital_appointments" 
+                name="Appointments" 
+                parent="menu_hospital_root"
+                sequence="9"/>
 
 </odoo>

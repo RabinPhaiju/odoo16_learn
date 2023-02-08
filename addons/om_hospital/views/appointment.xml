@@ -62,8 +62,9 @@
                 <button name="action_done" string="Mark as Done" type="object"
                 data-hotkey="v"
                     attrs="{'invisible':[('status','!=','in_consultation')]}"/>
-                <button name="action_cancel"  string="Cancel" type="object"
-                data-hotkey="c"
+                <!-- <button name="%(om_hospital.action_cancel_appointment)d"  string="Cancel" type="action" data-hotkey="c"
+                   attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/> -->
+                <button name="action_cancel"  string="Cancel" type="object" data-hotkey="c"
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/>
 
                 <field name="status" widget="statusbar" nolabel="1"
@@ -141,7 +142,7 @@
 
     <menuitem id="menu_hospital_appointment" 
             name="Appointment" 
-            parent="menu_hospital_root"
+            parent="menu_hospital_appointments"
             action="action_hospital_appointment"
             sequence="10"/>
 
