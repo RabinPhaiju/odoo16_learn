@@ -18,7 +18,9 @@ class CancelAppointmentWizard(models.TransientModel):
         # print('-----------default get execulted in cancel appointment wizard',result)
         return result
 
-    appointment_id = fields.Many2one('hospital.appointment',string="Appointment")
+    appointment_id = fields.Many2one('hospital.appointment',string="Appointment",
+        # domain=['|',('status','=','draft'),('priority','in',('0','1'))]
+        )
     reason = fields.Text(string="Reason")
     date_cancel = fields.Date(string="Cancellation Date")
     
