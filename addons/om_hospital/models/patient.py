@@ -23,10 +23,15 @@ class HospitalPatient(models.Model):
     @api.model_create_multi
     def create(self,vals_list): # inherit create method
         # we can edit the datas to be stored
+        print('-------------------------',vals_list)
         for vals in vals_list:
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
             # vals['gender'] = 'female'
         return super(HospitalPatient,self).create(vals_list)
+
+    def write(self,vals):
+        print('write (update) method inherit',vals)
+        return super(HospitalPatient,self).write(vals)
 
     @api.onchange('age')
     def _onchange_age(self):
