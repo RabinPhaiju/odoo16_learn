@@ -36,7 +36,7 @@ class HospitalPatient(models.Model):
 
     def name_get(self):
         # name_get function -> _rec_name
-        return [(rec.id,rec.ref +" "+ rec.name) for rec in self]
+        return [(rec.id,"[%s] %s" % (rec.ref , rec.name)) for rec in self]
 
     @api.onchange('age')
     def _onchange_age(self):
