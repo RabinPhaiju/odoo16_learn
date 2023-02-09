@@ -23,6 +23,7 @@
     'views/appointment.xml',
     'views/website_form.xml',
     'views/patient_tag.xml',
+    'views/odoo_playground.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],
