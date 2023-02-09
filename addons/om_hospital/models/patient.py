@@ -6,6 +6,7 @@ class HospitalPatient(models.Model):
     _name = "hospital.patient"
     _inherit = ['mail.thread']
     _description = "Patient Records"
+    _rec_name = "ref" # patient in dropdown shows ref as name
 
     name = fields.Char(string='Name',required=True,tracking=True)
     dob = fields.Date(string="DOB",tracking=True,default=fields.date.today())
@@ -32,6 +33,10 @@ class HospitalPatient(models.Model):
     def write(self,vals):
         print('write (update) method inherit',vals)
         return super(HospitalPatient,self).write(vals)
+
+    def name_get(self):
+        # name_get function -> _rec_name
+        return [(rec.id,rec.ref +" "+ rec.name) for rec in self]
 
     @api.onchange('age')
     def _onchange_age(self):
