@@ -49,10 +49,8 @@
         </field>
     </record>
 
-    <menuitem id="menu_patient_tag" 
-            name="Configuration" 
-            parent="menu_hospital_root"
-            action="action_patient_tag"
-            sequence="10"/>
+    <menuitem id="menu_hospital_configuration_tag" name="Configuration" parent="menu_hospital_root" sequence="10">
+        <menuitem id="menu_patient_tag" name="Patient Tag" action="action_patient_tag" sequence="10"/>
+    </menuitem>
 
 </odoo>

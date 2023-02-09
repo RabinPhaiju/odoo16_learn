@@ -11,7 +11,10 @@ class CancelAppointmentWizard(models.TransientModel):
         # must be before field
         result = super(CancelAppointmentWizard,self).default_get(fields)
         result['date_cancel'] = datetime.now()
-        print('-----------default get execulted in cancel appointment wizard',result)
+        # print('----------',self.env.context)
+        # if self.env.context.get('active_id'):
+            # result['appointment_id'] = self.env.context.get('active_id')
+        # print('-----------default get execulted in cancel appointment wizard',result)
         return result
 
     appointment_id = fields.Many2one('hospital.appointment',string="Appointment")
@@ -19,5 +22,6 @@ class CancelAppointmentWizard(models.TransientModel):
     date_cancel = fields.Datetime(string="Cancellation Date")
     
 
-    def action_cancel(self):
+    def action_wizard_cancel(self):
+        print("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ self", self)
         return

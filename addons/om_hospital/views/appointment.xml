@@ -62,18 +62,21 @@
                 <button name="action_done" string="Mark as Done" type="object"
                 data-hotkey="v"
                     attrs="{'invisible':[('status','!=','in_consultation')]}"/>
-                <!-- <button name="%(om_hospital.action_cancel_appointment)d"  string="Cancel" type="action" data-hotkey="c"
-                   attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/> -->
-                <button name="action_cancel"  string="Cancel" type="object" data-hotkey="c"
+                <button name="%(om_hospital.action_cancel_appointment)d"  string="Cancel" 
+                    type="action" data-hotkey="c" 
+                    context="{'default_appointment_id':active_id,'hide_appointment':1}"
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/>
+                <!-- <button name="action_cancel"  string="Cancel" type="object" data-hotkey="c"
+                   attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/> -->
 
                 <field name="status" widget="statusbar" nolabel="1"
                     statusbar_visible="draft,in_consultation,done" />
                 </header>
                 <sheet>
+                    <h1><field name="ref" readonly="true"/></h1>
+                    <field name="priority" widget="priority" class="mr-2"/>                        
                     <group>
                         <group>
-                            <field name="ref"/>                            
                             <field name="patient_id" default_focus="1"/>                            
                             <field name="doctor_id" widget="many2one_avatar"/>
                             <button name="action_test" string="T_Button" type="object" 
@@ -86,7 +89,6 @@
                             <field name="appointment_time"/>                            
                             <field name="gender"/>                            
                             <field name="age"/>                        
-                            <field name="priority" widget="priority" class="mr-2"/>                        
                         </group>
                     </group>
 
