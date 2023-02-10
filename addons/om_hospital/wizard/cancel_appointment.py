@@ -33,4 +33,7 @@ class CancelAppointmentWizard(models.TransientModel):
         if self.appointment_id.booking_date > today:
             raise ValidationError(_('Cannot cancel appointment before %s days!',cancel_days))
         self.appointment_id.status = 'cancel'
-        return
+        return {
+            'type':'ir.actions.client',
+            'tag':'reload'
+        }
