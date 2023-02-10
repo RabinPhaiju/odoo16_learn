@@ -10,6 +10,7 @@ class HospitalAppointment(models.Model):
     # if _rec_name or name field is not in class, It will show model_name,id in Many2one rel
 
     doctor_id = fields.Many2one('res.users',String="Doctor",tracking=True)
+    operation_id = fields.Many2one('res.users',String="Operation",tracking=True)
     pharmacy_line_ids = fields.One2many('appointment.pharmacy.lines','appointment_id',string="Pharmacy Lines")
     patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=True,ondelete="restrict") 
     # ondelete="cascade"

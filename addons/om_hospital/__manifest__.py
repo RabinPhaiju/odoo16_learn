@@ -25,6 +25,7 @@
     'views/patient_tag.xml',
     'views/odoo_playground.xml',
     'views/res_config_settings.xml',
+    'views/operation.xml',
 ],
 'demo':[],
 'images':['static/description/icon.png'],

@@ -96,9 +96,10 @@
                             <field name="doctor_id" widget="many2one_avatar"/>
                             <button name="action_test" string="T_Button" type="object" 
                             help="This is help message.."
-                                confirm="Are you sure ??" class="oe_highlight"/>                       
+                            confirm="Are you sure ??" class="oe_highlight"/>                       
                         </group>
                         <group>
+                            <field name="operation_id"/>
                             <field name="hide_sales_price"/>     
                             <field name="booking_date"/>     
                             <field name="appointment_time"/>                            
