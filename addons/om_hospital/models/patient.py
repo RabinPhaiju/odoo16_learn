@@ -70,5 +70,12 @@ class HospitalPatient(models.Model):
             if rec.is_child and rec.age == 0:
                 raise ValidationError(_("Age has to be recorded !"))
 
+    @api.constrains('dob')
+    def _check_dob(self):
+        for rec in self:
+            if rec.dob and rec.dob > fields.Date.today():
+                raise ValidationError(_("DOB is greater than today !"))
+                
+
     _sql_constraints = [('unique_ref','unique(ref)',"This ref is already used!")]
     _sql_constraints = [('check_age','check(age > 0)',"Age cannot be less than 0!")]
