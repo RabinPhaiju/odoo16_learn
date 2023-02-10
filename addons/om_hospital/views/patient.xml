@@ -10,7 +10,7 @@
                     <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
-                            <field name="ref"/>                            
+                            <field name="ref" readonly="1"/>                            
                             <field name="name"/>                            
                             <field name="dob"/>                                                    
                             <field name="age"/>                                                    
@@ -35,9 +35,17 @@
                         <group>
                             <field name="parent" attrs="{'invisible':[('age','>',18)]}"></field>
                             <field name="marital_status"></field>
-                            <field name="partner_name" attrs="{'readonly':[('marital_status','==','single')]}"></field>
                         </group>
                     </group>
+                    <h6 class="oe_class d-flex w-50">
+                        <label class="d-flex text-nowrap">Partner Name 
+                            <span class="text-danger px-1" 
+                                    attrs="{'invisible':[('marital_status','==','single')]}"> *</span></label>
+                        <field name="partner_name" class="w-75 ps-4"
+                            attrs="{'readonly':[('marital_status','==','single')],
+                            'required':[('marital_status','==','married')]}"
+                        ></field>
+                    </h6>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
