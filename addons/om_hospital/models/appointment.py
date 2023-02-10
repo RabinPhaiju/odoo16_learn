@@ -1,5 +1,5 @@
 from odoo import api,fields,models,_
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError,UserError
 
 class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
@@ -39,6 +39,12 @@ class HospitalAppointment(models.Model):
         for vals in vals_list:
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super(HospitalAppointment,self).create(vals_list)
+
+    def unlink(self):
+        for appointment in self:
+            if appointment.status == 'done':
+                raise UserError(_('You cannot delete a appointment with DONE status'))
+        return super(HospitalAppointment,self).unlink()
 
     def action_test(self):
         return {
