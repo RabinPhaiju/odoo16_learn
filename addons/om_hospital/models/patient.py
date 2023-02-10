@@ -73,6 +73,12 @@ class HospitalPatient(models.Model):
             else:
                 rec.age = 0
 
+    @api.ondelete(at_uninstall=False)
+    def _check_appointments(self):
+        for rec in self:
+            if rec.appointment_ids:
+                raise ValidationError(_("You cannot delete patient with appointment.!"))
+
     @api.depends('appointment_ids')
     def _compute_appointment_count(self):
         for rec in self:
