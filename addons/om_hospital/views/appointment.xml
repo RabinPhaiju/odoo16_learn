@@ -6,6 +6,7 @@
         <field name="type">ir.actions.server</field>
         <field name="model_id" ref="model_hospital_appointment"/>
         <field name="binding_model_id" ref="model_hospital_appointment" />
+        <field name="binding_view_types">list</field>
         <field name="state">code</field>
         <field name="code">
             for record in records:
@@ -54,6 +55,7 @@
                     <button name="action_group_test" string="Click me" type="object" class="oe_highlight"/>
                     <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
                 </groupby>
+                <field name="progress" widget="progressbar"/>
             </tree>
         </field>
     </record>
@@ -96,7 +98,8 @@
                 <!-- <button name="action_cancel"  string="Cancel" type="object" data-hotkey="c"
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/> -->
 
-                <field name="status" widget="statusbar" nolabel="1"
+                <field name="status" widget="statusbar" nolabel="1" 
+                    options="{'clickable':1}"
                     statusbar_visible="draft,in_consultation,done" />
                 </header>
                 <sheet>
@@ -122,6 +125,10 @@
                     </group>
 
                     <notebook>
+                        <page name="progress" string="Progress">
+                            <!-- <field name="progress" widget="gauge" options="{'max_field': 'target_goal', 'style': 'width:160px; height: 120px;'}" /> -->
+                            <field name="progress" widget="percentpie" />
+                        </page>
                         <page name="prescription" string="Prescription">
                             <field name="prescription" placeholder="Enter a prescription"
                                 options="{'collaborative': true,'resizable':true}" />
@@ -161,7 +168,7 @@
         <field name="name">Patient Appointment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.appointment</field>
-        <field name="view_mode">tree,form,activity</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
         <field name="context">{}</field>
 
         <field name="help" type="html">

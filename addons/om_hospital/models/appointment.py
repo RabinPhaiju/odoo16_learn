@@ -38,6 +38,7 @@ class HospitalAppointment(models.Model):
         ('cancel','Cancel'),],string="Status",default='draft')
 
     hide_sales_price = fields.Boolean(String="Hide Sales Price")
+    progress = fields.Integer(string="Progress",compute="_compute_progress")
 
 
     @api.model_create_multi
@@ -45,6 +46,18 @@ class HospitalAppointment(models.Model):
         for vals in vals_list:
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super(HospitalAppointment,self).create(vals_list)
+
+    @api.depends('status')
+    def _compute_progress(self):
+        for rec in self:
+            progress = 0
+            if rec.status == 'draft':
+                progress = 25
+            elif rec.status == 'in_consultation':
+                progress = 50
+            elif rec.status == 'done':
+                progress = 100
+            rec.progress = progress
 
     def unlink(self):
         for appointment in self:
