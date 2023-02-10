@@ -35,6 +35,12 @@
                 <field name="status" widget="badge"
                     decoration-success="status == 'done'" decoration-info="status in ('draft','in_consultation')"
                     decoration-danger="status == 'cancel'" />
+                <groupby name="patient_id">
+                    <!-- hospital.patient -->
+                    <!-- only for many 2 one field -->
+                    <button name="action_group_test" string="Click me" type="object" class="oe_highlight"/>
+                    <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
+                </groupby>
             </tree>
         </field>
     </record>

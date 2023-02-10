@@ -96,6 +96,9 @@ class HospitalPatient(models.Model):
         for rec in self:
             if rec.dob and rec.dob > fields.Date.today():
                 raise ValidationError(_("DOB should not greater than today !"))
+
+    def action_group_test(self):
+        print('------------action_group_test')
                 
 
     _sql_constraints = [('unique_ref','unique(ref)',"This ref is already used!")]
