@@ -38,9 +38,9 @@
                         </group>
                     </group>
                     <h6 class="oe_class d-flex w-50">
-                        <label class="d-flex text-nowrap">Partner Name 
+                        <span class="d-flex text-nowrap">Partner Name 
                             <span class="text-danger px-1" 
-                                    attrs="{'invisible':[('marital_status','==','single')]}"> *</span></label>
+                                    attrs="{'invisible':[('marital_status','==','single')]}"> *</span></span>
                         <field name="partner_name" class="w-75 ps-4"
                             attrs="{'readonly':[('marital_status','==','single')],
                             'required':[('marital_status','==','married')]}"

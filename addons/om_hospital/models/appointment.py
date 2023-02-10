@@ -61,7 +61,8 @@ class HospitalAppointment(models.Model):
 
     def action_in_consultation(self):
         for rec in self:
-            rec.status = "in_consultation"   
+            if rec.status == 'draft':
+                rec.status = "in_consultation"   
     
     def action_done(self):
         for rec in self:
