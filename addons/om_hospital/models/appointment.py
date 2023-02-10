@@ -90,3 +90,10 @@ class HospitalAppointment(models.Model):
         return action
         # for rec in self:
             # rec.status = "cancel"
+    
+    def action_send_mail(self):
+        if self.patient_id.email:
+            template = self.env.ref('om_hospital.hospital_appointment_email')
+            for rec in self:
+                # pass object.id
+                template.send_mail(rec.id)

@@ -116,6 +116,7 @@
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/>
                 <!-- <button name="action_cancel"  string="Cancel" type="object" data-hotkey="c"
                    attrs="{'invisible':[('status', 'not in', ('in_consultation','draft'))]}"/> -->
+                <button name="action_send_mail"  string="Send Email" type="object" data-hotkey="m"/>
 
                 <field name="status" widget="statusbar" nolabel="1" 
                     options="{'clickable':1}"
