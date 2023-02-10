@@ -20,6 +20,9 @@ class HospitalPatient(models.Model):
     appointment_count = fields.Integer(string="Appointment Count", compute="_compute_appointment_count",store=True)
     appointment_ids = fields.One2many('hospital.appointment','patient_id',string="Appointments")
     is_birthday = fields.Boolean(string="Birthday",compute="_compute_is_birthday")
+    phone = fields.Char(string="Phone")
+    email = fields.Char(string="Email")
+    website= fields.Char(string="Website")
 
     parent = fields.Char(string="Parent")
     marital_status = fields.Selection([

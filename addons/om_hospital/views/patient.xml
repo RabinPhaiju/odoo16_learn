@@ -46,19 +46,24 @@
                     </group>
                     <group string="Other Information">
                         <group>
-                            <field name="parent" attrs="{'invisible':[('age','>',18)]}"></field>
-                            <field name="marital_status"></field>
+                            <field name="parent" attrs="{'invisible':[('age','>',18)]}"/>
+                            <field name="marital_status"/>
                         </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                            <field name="website" widget="url"/>
+                        </group>
+                        <div class="oe_class d-flex w-50">
+                            <span class="d-flex text-nowrap">Partner Name 
+                                <span class="text-danger px-1" attrs="{'invisible':[('marital_status','==','single')]}"> *</span>
+                            </span>
+                            <field name="partner_name" class="w-100 ps-4"
+                                attrs="{'readonly':[('marital_status','==','single')],
+                                'required':[('marital_status','==','married')]}"
+                            ></field>
+                        </div>
                     </group>
-                    <h6 class="oe_class d-flex w-50">
-                        <span class="d-flex text-nowrap">Partner Name 
-                            <span class="text-danger px-1" 
-                                    attrs="{'invisible':[('marital_status','==','single')]}"> *</span></span>
-                        <field name="partner_name" class="w-75 ps-4"
-                            attrs="{'readonly':[('marital_status','==','single')],
-                            'required':[('marital_status','==','married')]}"
-                        ></field>
-                    </h6>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
