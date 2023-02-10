@@ -20,6 +20,8 @@ class HospitalAppointment(models.Model):
 
     appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now,tracking=True)    
     booking_date = fields.Date(string="Booking Date",default=fields.Date.today,tracking=True)
+    duration = fields.Float(string="Duration")
+
     gender = fields.Selection(string="Gender",related='patient_id.gender',readonly=False)
     age = fields.Integer(string="Age",related='patient_id.age',readonly=False)
      # suggestion are ignored in related

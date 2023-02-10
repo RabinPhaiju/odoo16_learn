@@ -60,6 +60,25 @@
         </field>
     </record>
 
+    <record id="view_hospital_appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointment"
+                date_start="booking_date"
+                date_delay="duration"
+                color="status"
+                event_open_popup="true"
+                event_limit="5"
+                mode="month"
+                quick_add="False"
+                form_view_id="%(om_hospital.view_hospital_appointment_form)d">
+                <!-- <field name="patient_id" avatar_field="image"/> -->
+                <field name="patient_id"/>
+                <field name="status" filters="1" invisible="1"/>
+            </calendar>
+        </field>
+    </record>
 
     <record id="view_hospital_appointment_activity" model="ir.ui.view">
         <field name="name">hospital.appointment.activity</field>
@@ -118,6 +137,7 @@
                             <field name="operation_id"/>
                             <field name="hide_sales_price"/>     
                             <field name="booking_date"/>     
+                            <field name="duration"/>     
                             <field name="appointment_time"/>                            
                             <field name="gender"/>                            
                             <field name="age"/>                        
@@ -168,7 +188,7 @@
         <field name="name">Patient Appointment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.appointment</field>
-        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="view_mode">tree,kanban,form,calendar,activity</field>
         <field name="context">{}</field>
 
         <field name="help" type="html">
