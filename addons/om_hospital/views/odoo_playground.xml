@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <field name="model_id"/>                            
-                        <field name="code"/>                            
+                        <field name="code" widget="ace" options="{'mode':'python'}" />                            
                     </group> 
                     <group>
                       <button name="action_execute" string="Execute" type="object" class="btn-primary"/>                           
