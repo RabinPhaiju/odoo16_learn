@@ -19,7 +19,9 @@
                         <group>
                             <field name="is_child"/>                            
                             <field name="gender" invisible="context.get('default_gender')" widget="radio"/>                            
-                            <field name="tag_ids" widget="many2many_tags"
+                            <field name="tag_ids" 
+                                widget="many2many_tags"
+                                widget_test="many2many_checkboxes"
                                 options="{'color_field':'color'}"/> 
                                  <!-- color is coloumn name-->
                             <field name="capitalized_name"/>                            
