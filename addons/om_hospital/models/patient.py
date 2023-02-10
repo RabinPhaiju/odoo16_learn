@@ -16,6 +16,8 @@ class HospitalPatient(models.Model):
     gender = fields.Selection([('male',"Male"),('female','Female'),('others','Others')],string="Gender",tracking=True)
     capitalized_name = fields.Char(string='Capitalized Name',compute='_compute_capitalized_name',store=True) # becomes readonly and not stored in db by default
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
+    appointment_count = fields.Integer(string="Appointment Count", compute="_compute_appointment_count",store=True)
+    appointment_ids = fields.One2many('hospital.appointment','patient_id',string="Appointments")
 
     active = fields.Boolean(string="Active",default=True) # for archive and un_archive
     image = fields.Image(string="Image")
@@ -63,6 +65,12 @@ class HospitalPatient(models.Model):
                 rec.age = relativedelta(today,rec.dob).years
             else:
                 rec.age = 0
+
+    @api.depends('appointment_ids')
+    def _compute_appointment_count(self):
+        for rec in self:
+            rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id','=',rec.id)])
+        
 
     @api.constrains('is_child','age')
     def _check_child_age(self):

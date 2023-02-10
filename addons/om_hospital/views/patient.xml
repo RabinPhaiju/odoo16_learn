@@ -14,6 +14,7 @@
                             <field name="name"/>                            
                             <field name="dob"/>                                                    
                             <field name="age"/>                                                    
+                            <field name="appointment_count"/>                                                    
                         </group>
                         <group>
                             <field name="is_child"/>                            
