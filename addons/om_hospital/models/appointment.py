@@ -11,7 +11,11 @@ class HospitalAppointment(models.Model):
 
     doctor_id = fields.Many2one('res.users',String="Doctor",tracking=True)
     pharmacy_line_ids = fields.One2many('appointment.pharmacy.lines','appointment_id',string="Pharmacy Lines")
-    patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=True)
+    patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=True,ondelete="restrict") 
+    # ondelete="cascade"
+    # restrict with prevent from deleting record with is used in another model
+    # cascade with delete the related records from another model as it is deleted.
+
     appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now,tracking=True)    
     booking_date = fields.Date(string="Booking Date",default=fields.Date.today,tracking=True)
     gender = fields.Selection(string="Gender",related='patient_id.gender',readonly=False)
