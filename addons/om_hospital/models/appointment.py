@@ -8,6 +8,7 @@ class HospitalAppointment(models.Model):
     _rec_name = "ref"
     # if model has attribute name, we dont need _rec_name else define _rec_name as any attribute field
     # if _rec_name or name field is not in class, It will show model_name,id in Many2one rel
+    _order = 'id desc, appointment_time asc'
 
     doctor_id = fields.Many2one('res.users',String="Doctor",tracking=True)
     operation_id = fields.Many2one('res.users',String="Operation",tracking=True)
