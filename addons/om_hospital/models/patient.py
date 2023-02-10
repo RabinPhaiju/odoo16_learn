@@ -19,6 +19,7 @@ class HospitalPatient(models.Model):
     ref = fields.Char(string="Reference",default=lambda self:_('New'))
     appointment_count = fields.Integer(string="Appointment Count", compute="_compute_appointment_count",store=True)
     appointment_ids = fields.One2many('hospital.appointment','patient_id',string="Appointments")
+    is_birthday = fields.Boolean(string="Birthday",compute="_compute_is_birthday")
 
     parent = fields.Char(string="Parent")
     marital_status = fields.Selection([
@@ -92,6 +93,16 @@ class HospitalPatient(models.Model):
         for rec in self:
             rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id','=',rec.id)])
         
+    @api.depends('dob')
+    def _compute_is_birthday(self):
+        today = date.today()
+        is_birthday = False
+        for rec in self:
+            if rec.dob:
+                if today.day == rec.dob.day and today.month == rec.dob.month:
+                    is_birthday = True
+        rec.is_birthday = is_birthday
+
 
     @api.constrains('is_child','age')
     def _check_child_age(self):
