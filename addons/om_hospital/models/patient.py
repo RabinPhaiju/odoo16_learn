@@ -1,6 +1,7 @@
 from odoo import api,fields,models,_
 from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
+from datetime import date
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -10,7 +11,7 @@ class HospitalPatient(models.Model):
 
     name = fields.Char(string='Name',required=True,tracking=True)
     dob = fields.Date(string="DOB",tracking=True,default=fields.date.today())
-    age = fields.Integer(string="Age",compute='_compute_age',store=True)
+    age = fields.Integer(string="Age",compute='_compute_age',inverse='_inverse_compute_age',store=True)
     is_child = fields.Boolean(string="Is Child?",tracking=True)
     notes = fields.Text(string="Notes",tracking=True)
     gender = fields.Selection([('male',"Male"),('female','Female'),('others','Others')],string="Gender",tracking=True)
@@ -72,6 +73,13 @@ class HospitalPatient(models.Model):
                 rec.age = relativedelta(today,rec.dob).years
             else:
                 rec.age = 0
+    
+    @api.depends('age')
+    def _inverse_compute_age(self):
+        today = date.today()
+        for rec in self:
+            if rec.age:
+                rec.dob = today - relativedelta(years=rec.age)
 
     @api.ondelete(at_uninstall=False)
     def _check_appointments(self):
