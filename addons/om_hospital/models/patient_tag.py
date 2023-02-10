@@ -7,5 +7,9 @@ class PatientTag(models.Model):
 
     name = fields.Char(string="Name" , required=True )
     active = fields.Boolean(string="Active" ,default=True )
+    sequence = fields.Integer(string="Sequence")
     color = fields.Integer(string="Color")
     color2 = fields.Char(string="Color2")
+
+    _sql_constraints = [('unique_name','unique(name,active)',"Tag name must be unique!")]
+    _sql_constraints = [('check_sequence','check(sequence > 0)',"Sequence must be greater than 0!")]

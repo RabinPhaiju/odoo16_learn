@@ -71,3 +71,4 @@ class HospitalPatient(models.Model):
                 raise ValidationError(_("Age has to be recorded !"))
 
     _sql_constraints = [('unique_ref','unique(ref)',"This ref is already used!")]
+    _sql_constraints = [('check_age','check(age > 0)',"Age cannot be less than 0!")]
