@@ -117,3 +117,20 @@ class HospitalAppointment(models.Model):
             'target':'new',
             'url':whatsapp_api_url
         }
+    
+    def action_notificaiton(self):
+        action = self.env.ref('om_hospital.action_hospital_patient')
+        return {
+            'type':'ir.actions.client',
+            'tag':'display_notification',
+            'params':{
+                'title': ('Click to open the patient record'),
+                'message':'%s',
+                'links':[{
+                    'label':self.patient_id.name,
+                    'url':f'#action={action.id}&id={self.patient_id.id}&model=hospital.patient'
+                }],
+                'type':'success',
+                'sticky':'False'
+            }
+        }

@@ -30,6 +30,8 @@ self.env['patient.tag'].browse(2).get_metadata()[0].get('xmlid')
 self.env['hospital.patient'].fields_get()
 self.env['hospital.patient'].fields_get(['name','gender'])
 self.env['hospital.patient'].fields_get(['name','gender'],['type','string'])
+
+self.env['hospital.patient'].with_context(active_test=False).search_count([])
 """
 
 class OdooPlayGround(models.Model):

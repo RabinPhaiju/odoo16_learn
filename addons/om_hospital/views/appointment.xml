@@ -119,7 +119,7 @@
                    attrs="{'invisible':[('state', 'not in', ('in_consultation','draft'))]}"/> -->
                 <button name="action_send_mail"  string="Send Email" type="object" data-hotkey="m"/>
                 <button name="action_share_whatsapp" string="Share in Whatsapp"
-                    icon="fa-whatsapp" type="object" data-hotkey="w"/>
+                    icon="fa-whatsapp" type="object" data-hotkey="w"/> 
 
                 <field name="state" widget="statusbar" nolabel="1" 
                     options="{'clickable':1}"
@@ -145,6 +145,7 @@
                             <field name="booking_date"/>     
                             <field name="duration"/>     
                             <field name="appointment_time"/>  
+                            <button name="action_notificaiton" string="Notification" type="object" class="oe_highlight"/>
 
                             <field name="company_id" groups="base.group_multi_company"/>                            
                             <field name="currency_id" groups="base.group_multi_currency"/>                            

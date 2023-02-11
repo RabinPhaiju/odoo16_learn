@@ -37,3 +37,11 @@ class CancelAppointmentWizard(models.TransientModel):
             'type':'ir.actions.client',
             'tag':'reload'
         }
+        # Prevent closing of wizard
+        # return {
+        #     'type':'ir.actions.act_window',
+        #     'view_mode':'form',
+        #     'res_model':'cancel.appointment.wizard',
+        #     'target':'new',
+        #     'res_id':self.id
+        # }
