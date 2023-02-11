@@ -26,6 +26,7 @@
     'views/website_form.xml',
     'views/patient_tag.xml',
     'views/odoo_playground.xml',
+    'views/odoo_query.xml',
     'views/res_config_settings.xml',
     'views/operation.xml',
 ],

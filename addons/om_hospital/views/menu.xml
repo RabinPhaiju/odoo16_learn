@@ -14,4 +14,10 @@
                 parent="menu_hospital_root"
                 sequence="9"/>
 
+    <menuitem id="menu_technical" 
+                name="Technical" 
+                parent="menu_hospital_root" 
+                sequence="11"/>
+    
+
 </odoo>
