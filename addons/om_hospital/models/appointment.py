@@ -33,11 +33,11 @@ class HospitalAppointment(models.Model):
         ('1','Low'),
         ('2','High'),
         ('3','Very Hight'),],string="Priority",default='0')
-    status = fields.Selection([
+    state = fields.Selection([
         ('draft','Draft'),
         ('in_consultation','In Consultation'),
         ('done','Done'),
-        ('cancel','Cancel'),],string="Status",default='draft')
+        ('cancel','Cancel'),],string="State",default='draft')
 
     hide_sales_price = fields.Boolean(String="Hide Sales Price")
     progress = fields.Integer(string="Progress",compute="_compute_progress")
@@ -49,22 +49,22 @@ class HospitalAppointment(models.Model):
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super(HospitalAppointment,self).create(vals_list)
 
-    @api.depends('status')
+    @api.depends('state')
     def _compute_progress(self):
         for rec in self:
             progress = 0
-            if rec.status == 'draft':
+            if rec.state == 'draft':
                 progress = 25
-            elif rec.status == 'in_consultation':
+            elif rec.state == 'in_consultation':
                 progress = 50
-            elif rec.status == 'done':
+            elif rec.state == 'done':
                 progress = 100
             rec.progress = progress
 
     def unlink(self):
         for appointment in self:
-            if appointment.status == 'done':
-                raise UserError(_('You cannot delete a appointment with DONE status'))
+            if appointment.state == 'done':
+                raise UserError(_('You cannot delete a appointment with DONE state'))
         return super(HospitalAppointment,self).unlink()
 
     def action_test(self):
@@ -78,18 +78,18 @@ class HospitalAppointment(models.Model):
 
     def action_in_consultation(self):
         for rec in self:
-            if rec.status == 'draft':
-                rec.status = "in_consultation"   
+            if rec.state == 'draft':
+                rec.state = "in_consultation"   
     
     def action_done(self):
         for rec in self:
-            rec.status = "done"   
+            rec.state = "done"   
             
     def action_cancel(self):
         action = self.env.ref('om_hospital.action_cancel_appointment').read()[0]
         return action
         # for rec in self:
-            # rec.status = "cancel"
+            # rec.state = "cancel"
     
     def action_send_mail(self):
         if self.patient_id.email:

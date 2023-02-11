@@ -20,7 +20,7 @@ class CancelAppointmentWizard(models.TransientModel):
         return result
 
     appointment_id = fields.Many2one('hospital.appointment',string="Appointment",
-        # domain=['|',('status','=','draft'),('priority','in',('0','1'))]
+        # domain=['|',('state','=','draft'),('priority','in',('0','1'))]
         )
     reason = fields.Text(string="Reason")
     date_cancel = fields.Date(string="Cancellation Date")
@@ -32,7 +32,7 @@ class CancelAppointmentWizard(models.TransientModel):
 
         if self.appointment_id.booking_date > today:
             raise ValidationError(_('Cannot cancel appointment before %s days!',cancel_days))
-        self.appointment_id.status = 'cancel'
+        self.appointment_id.state = 'cancel'
         return {
             'type':'ir.actions.client',
             'tag':'reload'
