@@ -10,17 +10,17 @@ class HospitalAppointment(models.Model):
     # if _rec_name or name field is not in class, It will show model_name,id in Many2one rel
     _order = 'id desc, appointment_time asc'
 
-    doctor_id = fields.Many2one('res.users',String="Doctor",tracking=True)
-    operation_id = fields.Many2one('res.users',String="Operation",tracking=True)
+    doctor_id = fields.Many2one('res.users',String="Doctor",tracking=1)
+    operation_id = fields.Many2one('res.users',String="Operation",tracking=20)
     pharmacy_line_ids = fields.One2many('appointment.pharmacy.lines','appointment_id',string="Pharmacy Lines")
-    patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=True,ondelete="restrict") 
+    patient_id = fields.Many2one('hospital.patient',String="Patient",tracking=3,ondelete="restrict") 
     # ondelete="cascade"
     # restrict with prevent from deleting record with is used in another model
     # cascade with delete the related records from another model as it is deleted.
 
-    appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now,tracking=True)    
-    booking_date = fields.Date(string="Booking Date",default=fields.Date.today,tracking=True)
-    duration = fields.Float(string="Duration")
+    appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now,tracking=4)    
+    booking_date = fields.Date(string="Booking Date",default=fields.Date.today,tracking=5)
+    duration = fields.Float(string="Duration",tracking=2)
 
     company_id = fields.Many2one('res.company',string="Company",default=lambda self:self.env.company)
     currency_id = fields.Many2one('res.currency',related='company_id.currency_id')
@@ -70,13 +70,11 @@ class HospitalAppointment(models.Model):
                 raise UserError(_('You cannot delete a appointment with DONE state'))
         return super(HospitalAppointment,self).unlink()
 
-    def action_test(self):
+    def action_object_test(self):
         return {
-            'effect':{
-                'fadeout':'slow',
-                'message':"Click successfull",
-                'type':'rainbow_man'
-            }
+            'type':'ir.actions.act_url',
+            'target':'self',
+            'url': '/patient_webform'
         }
 
     def action_in_consultation(self):
@@ -86,7 +84,14 @@ class HospitalAppointment(models.Model):
     
     def action_done(self):
         for rec in self:
-            rec.state = "done"   
+            rec.state = "done"  
+        return {
+            'effect':{
+                'fadeout':'slow',
+                'message':"Done",
+                'type':'rainbow_man'
+            }
+        } 
             
     def action_cancel(self):
         action = self.env.ref('om_hospital.action_cancel_appointment').read()[0]
