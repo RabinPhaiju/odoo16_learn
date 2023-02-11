@@ -129,6 +129,17 @@ class HospitalPatient(models.Model):
 
     def action_group_test(self):
         print('------------action_group_test')
+    
+    def action_view_appointment(self):
+        return {
+            'name':_('Appointment'),
+            'res_model':'hospital.appointment',
+            'view_mode':'list,form,calendar,activity',
+            'context':{'default_patient_id':self.id},
+            'domain':[('patient_id','=',self.id)],
+            'target':'current',
+            'type':'ir.actions.act_window'
+        }
                 
 
     _sql_constraints = [('unique_ref','unique(ref)',"This ref is already used!")]

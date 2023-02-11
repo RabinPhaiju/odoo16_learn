@@ -7,6 +7,12 @@
         <field name="arch" type="xml">
             <form string="Hospital">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_appointment" icon="fa-star">
+                            <field name="appointment_count" string="Appointment" widget="statinfo"/>
+                        </button>
+
+                    </div>
                     <div class="alert alert-info text-center o_form_header"
                     attrs="{'invisible': [('is_birthday', '=', False)]}"
                     role="alert">
@@ -25,7 +31,7 @@
                             <field name="dob"/>                                                    
                             <field name="is_birthday" invisible="1"/>                                                    
                             <field name="age"/>                                                    
-                            <field name="appointment_count"/>                                                    
+                            <!-- <field name="appointment_count"/>                                                     -->
                         </group>
                         <group>
                             <field name="is_child"/>                            
