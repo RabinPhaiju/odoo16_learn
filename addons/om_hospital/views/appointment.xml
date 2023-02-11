@@ -39,7 +39,7 @@
                 <field name="prescription" optional="hide"/>
                 <field name="gender"/>
                 <field name="age"/>
-                <field name="priority"/>
+                <field name="priority" decoration-bf="1"/>
                 <field name="activity_ids" widget="list_activity"/>
                 <button name="action_done" type="object" class="fa fa-check btn-success"
                         attrs="{'invisible':[('state','!=','in_consultation')]}"/>
@@ -55,6 +55,7 @@
                     <button name="action_group_test" string="Click me" type="object" class="oe_highlight"/>
                     <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
                 </groupby>
+
                 <field name="progress" widget="progressbar"/>
             </tree>
         </field>
