@@ -5,10 +5,13 @@ class HospitalOperation(models.Model):
     _name = "hospital.operation"
     _description = "Hospital Operation"
     _rec_name = 'operation_name'
+    _order = "sequence"
 
     doctor_id = fields.Many2one('res.users',string="Doctor" , required=True )
     operation_name = fields.Char(string="Operation Name")
     refernece_record = fields.Reference([('hospital.patient','Patient'),('hospital.appointment','Appointment')],string="Record")
+
+    sequence = fields.Integer(string="Sequence",default=10)
 
     @api.model
     def name_create(self,name):
