@@ -123,6 +123,7 @@ class HospitalAppointment(models.Model):
     
     def action_notificaiton(self):
         action = self.env.ref('om_hospital.action_hospital_patient')
+        # 'next' will redirect to next window after display notification
         return {
             'type':'ir.actions.client',
             'tag':'display_notification',
@@ -134,6 +135,12 @@ class HospitalAppointment(models.Model):
                     'url':f'#action={action.id}&id={self.patient_id.id}&model=hospital.patient'
                 }],
                 'type':'success',
-                'sticky':'False'
+                'sticky':'False',
+                'next':{
+                    'type':'ir.actions.act_window',
+                    'res_model':'hospital.patient',
+                    'res_id':self.patient_id.id,
+                    'views':[(False,'form')]
+                }
             }
         }
