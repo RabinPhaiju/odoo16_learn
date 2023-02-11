@@ -20,6 +20,16 @@ self.env.context: Context
 self.env['res.partner']
 self.env['res.partner'].search([['is_company', '=', True]])
 self.env['hospital.patient'].create({'name':'Test patient','email':'testpatient@gmail.com','phone':'34343434','dob':'2000-4-4'})
+self.env['hospital.patient'].browse(1).exists().name
+self.env['hospital.patient'].browse(1).write({'name':"updated name"})
+self.env['hospital.patient'].browse(1).unlink()
+self.env['hospital.patient'].search([('gender','=','male')])
+self.env['hospital.patient'].search_count([('gender','=','male')])
+self.env['patient.tag'].browse(2).get_metadata()
+self.env['patient.tag'].browse(2).get_metadata()[0].get('xmlid')
+self.env['hospital.patient'].fields_get()
+self.env['hospital.patient'].fields_get(['name','gender'])
+self.env['hospital.patient'].fields_get(['name','gender'],['type','string'])
 """
 
 class OdooPlayGround(models.Model):
