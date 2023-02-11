@@ -22,6 +22,9 @@ class HospitalAppointment(models.Model):
     booking_date = fields.Date(string="Booking Date",default=fields.Date.today,tracking=True)
     duration = fields.Float(string="Duration")
 
+    company_id = fields.Many2one('res.company',string="Company",default=lambda self:self.env.company)
+    currency_id = fields.Many2one('res.currency',related='company_id.currency_id')
+
     gender = fields.Selection(string="Gender",related='patient_id.gender',readonly=False)
     age = fields.Integer(string="Age",related='patient_id.age',readonly=False)
      # suggestion are ignored in related
