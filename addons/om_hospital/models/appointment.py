@@ -112,6 +112,9 @@ class HospitalAppointment(models.Model):
         
         message = 'Hi *%s*, your appointment number is: %s, Thank you' % (self.patient_id.name,self.ref)
         whatsapp_api_url = 'https://api.whatsapp.com/send?phone=%s&text=%s' %(self.patient_id.phone,message)
+        
+        self.message_post(body=message,subject="Whatsapp")
+
         return {
             'type':'ir.actions.act_url',
             'target':'new',
