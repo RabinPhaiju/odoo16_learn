@@ -105,3 +105,15 @@ class HospitalAppointment(models.Model):
             for rec in self:
                 # pass object.id
                 template.send_mail(rec.id)
+    
+    def action_share_whatsapp(self):
+        if not self.patient_id.phone:
+            raise ValidationError(_("Missing phone number in patient record"))
+        
+        message = 'Hi *%s*, your appointment number is: %s, Thank you' % (self.patient_id.name,self.ref)
+        whatsapp_api_url = 'https://api.whatsapp.com/send?phone=%s&text=%s' %(self.patient_id.phone,message)
+        return {
+            'type':'ir.actions.act_url',
+            'target':'new',
+            'url':whatsapp_api_url
+        }
