@@ -30,7 +30,7 @@ class Task extends Component {
     `
   
     // use to get the states from parent component
-    static props = ["task", "onDelete", "onEdit"];
+    static props = ["task", "onDelete", "onEdit","onUpdate"];
 
     // initialize our state based on parent states
     setup(){
@@ -51,10 +51,11 @@ class Task extends Component {
 
     // toggle task
     async toggleTask() {
-        let toggled_task = {...this.state,'isCompleted':!this.state.isCompleted}
-        let deletedTask = await this._toggleTask(toggled_task)
+        // let toggled_task = {...this.state,'isCompleted':!this.state.isCompleted}
+        // let deletedTask = await this._toggleTask(toggled_task)
+        let deletedTask = await this.props.onUpdate(this.state.id,{'isCompleted':!this.state.isCompleted})
         if(deletedTask){
-          this.state.isCompleted = toggled_task;
+          this.state.isCompleted = !this.state.isCompleted;
         }
       }
     
@@ -88,7 +89,7 @@ class Root extends Component {
 
         <ul class="tasks d-flex flex-column p-0 mt-4">
             <t t-foreach="tasks" t-as="task" t-key="task.id">
-                <Task task="task" onDelete.bind="deleteTask"  onEdit.bind="editTask"/>
+                <Task task="task" onDelete.bind="deleteTask"  onEdit.bind="editTask" onUpdate.bind="_updateTask"/>
             </t>
         </ul>
     </div>
@@ -164,18 +165,15 @@ class Root extends Component {
         }
       }
 
-    async _updateTask(ta) {
-      let task = await ajax.rpc(`/hospital/task/update/${ta.id}`, {
-        'color':ta.color,
-        'title':ta.title,
-      })
+    async _updateTask(id,prop) {
+      let task = await ajax.rpc(`/hospital/task/update/${id}`, {...prop})
       task = JSON.parse(task)
       return task
     }
 
     // edit task
     async editTask(ta){
-        let updateTask = await this._updateTask(ta)
+        let updateTask = await this._updateTask(ta.id,{'color':ta.color,'title':ta.title})
         if(updateTask){
           const index = this.tasks.findIndex((t) => t.id === ta.id);
           this.tasks.splice(index, 1, ta)
