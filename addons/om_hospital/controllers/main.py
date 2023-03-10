@@ -36,4 +36,16 @@ class Hospital(http.Controller):
                for task in tasks]
         
         json_data = json.dumps(task_list, default=json_default)
-        return json_data  
+        return json_data   
+    
+    @http.route('/hospital/task/create', type='json', auth='public', website=True)
+    def hospital_task_create(self,**kwargs):
+        hospital_task = request.env['hospital.task'].sudo().create(kwargs)
+        new_task = {
+                    'id':hospital_task.id,
+                    'title':hospital_task.title,
+                    'color':hospital_task.color,
+                    'isCompleted':hospital_task.isCompleted,
+               }
+        json_data = json.dumps(new_task, default=json_default)
+        return json_data   

@@ -108,28 +108,33 @@ class Root extends Component {
       this.tasks.push(task)
     })
   }
+
+  async _addTask(title,color,isCompleted) {
+    let task = await ajax.rpc('/hospital/task/create', {title,color,isCompleted})
+    task = JSON.parse(task)
+    return task
+  }
   
-  addTask(){
+  async addTask(){
     // do not allow empty task name
     if (!this.state.title){
       alert("Please add task title.")
       return
     }
 
-    // add unique id
-    const id = Math.random().toString().substring(2,12)
-
+    let newTask = await this._addTask(this.state.title,this.state.color,this.state.isCompleted,);
+   
     // add new task
-    this.tasks.push({
-      id,
-      title: this.state.title,
-      color: this.state.color,
-      isCompleted: this.state.isCompleted,
-    })
+    this.tasks.push(newTask)
+    // this.tasks.push({
+    //   id,
+    //   title: this.state.title,
+    //   color: this.state.color,
+    //   isCompleted: this.state.isCompleted,
+    // })
 
     // reset states after saving
-    let state = this.state
-    this.state = {...state, title:"", color: "#FFF700"}
+    this.state = {isCompleted:false, title:"", color: "#FFF700"}
   }
 
     // delete task
