@@ -48,4 +48,19 @@ class Hospital(http.Controller):
                     'isCompleted':hospital_task.isCompleted,
                }
         json_data = json.dumps(new_task, default=json_default)
+        return json_data       
+
+    @http.route('/hospital/task/delete', type='json', auth='public', website=True)
+    def hospital_task_delete(self,**kwargs):
+        hospital_task = request.env['hospital.task'].sudo().browse(kwargs.get('id')).unlink()
+   
+        json_data = json.dumps(hospital_task, default=json_default)
         return json_data   
+
+    @http.route('/hospital/task/update/<id>', type='json', auth='public', website=True)
+    def hospital_task_update(self,id,**kwargs):
+        print('----------------------',kwargs)
+        updated_task = request.env['hospital.task'].sudo().browse(int(id)).write({**kwargs})
+
+        json_data = json.dumps(updated_task, default=json_default)
+        return json_data 

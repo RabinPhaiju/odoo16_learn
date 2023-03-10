@@ -137,16 +137,42 @@ class Root extends Component {
     this.state = {isCompleted:false, title:"", color: "#FFF700"}
   }
 
+  async _deleteTask(id) {
+    let task = await ajax.rpc('/hospital/task/delete', {id})
+    task = JSON.parse(task)
+    return task
+  }
+
     // delete task
-    deleteTask(task){
-        const index = this.tasks.findIndex((t) => t.id === task.id);
-        this.tasks.splice(index, 1);
+    async deleteTask(task){
+      let deletedTask = await this._deleteTask(task.id)
+        if(deletedTask){
+          const index = this.tasks.findIndex((t) => t.id === task.id);
+          this.tasks.splice(index, 1);
+        }else{
+          // cannot delete task, network error.
+        }
       }
 
+    async _updateTask(ta) {
+      let task = await ajax.rpc(`/hospital/task/update/${ta.id}`, {
+        'color':ta.color,
+        'title':ta.title,
+        'isCompleted':ta.isCompleted
+      })
+      task = JSON.parse(task)
+      return task
+    }
+
     // edit task
-    editTask(ta){
-        const index = this.tasks.findIndex((t) => t.id === ta.id);
-        this.tasks.splice(index, 1, ta)
+    async editTask(ta){
+        let updateTask = await this._updateTask(ta)
+        if(updateTask){
+          const index = this.tasks.findIndex((t) => t.id === ta.id);
+          this.tasks.splice(index, 1, ta)
+        }else{
+          //error or update fail
+        }
     }
 }
 mount(Root, document.getElementById("task_root"));
