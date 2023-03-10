@@ -43,9 +43,19 @@ class Task extends Component {
         })
     }
 
+    async _toggleTask(ta) {
+      let task = await ajax.rpc(`/hospital/task/update/${ta.id}`, {'isCompleted':ta.isCompleted})
+      task = JSON.parse(task)
+      return task
+    }
+
     // toggle task
-    toggleTask() {
-        this.state.isCompleted = !this.state.isCompleted;
+    async toggleTask() {
+        let toggled_task = {...this.state,'isCompleted':!this.state.isCompleted}
+        let deletedTask = await this._toggleTask(toggled_task)
+        if(deletedTask){
+          this.state.isCompleted = toggled_task;
+        }
       }
     
       deleteTask() {
@@ -158,7 +168,6 @@ class Root extends Component {
       let task = await ajax.rpc(`/hospital/task/update/${ta.id}`, {
         'color':ta.color,
         'title':ta.title,
-        'isCompleted':ta.isCompleted
       })
       task = JSON.parse(task)
       return task

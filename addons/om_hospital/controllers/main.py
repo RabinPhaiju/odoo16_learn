@@ -59,7 +59,6 @@ class Hospital(http.Controller):
 
     @http.route('/hospital/task/update/<id>', type='json', auth='public', website=True)
     def hospital_task_update(self,id,**kwargs):
-        print('----------------------',kwargs)
         updated_task = request.env['hospital.task'].sudo().browse(int(id)).write({**kwargs})
 
         json_data = json.dumps(updated_task, default=json_default)
