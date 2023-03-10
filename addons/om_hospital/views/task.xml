@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hospital_task_tree" model="ir.ui.view">
+        <field name="name">hospital.task.tree</field>
+        <field name="model">hospital.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="color" widget="color"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hospital_task_form" model="ir.ui.view">
+        <field name="name">hospital.task.form</field>
+        <field name="model">hospital.task</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Task">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title"/>                            
+                            <field name="color" widget="color"/>                            
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_task" model="ir.actions.act_window">
+        <field name="name">Hospital Task</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+            Create Hospital Task
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hospital_task" 
+            name="Hospital Task" 
+            parent="menu_hospital_configuration_tag"
+            action="action_hospital_task"
+            sequence="10"/> 
+
+</odoo>

@@ -29,6 +29,7 @@
     'views/odoo_query.xml',
     'views/res_config_settings.xml',
     'views/operation.xml',
+    'views/task.xml',
 
     'views/appointment_page.xml'
 ],
