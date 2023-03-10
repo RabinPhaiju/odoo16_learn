@@ -29,8 +29,17 @@
     'views/odoo_query.xml',
     'views/res_config_settings.xml',
     'views/operation.xml',
+
+    'views/appointment_page.xml'
 ],
 'demo':[],
+'assets': {
+    'web.assets_frontend': [
+        ('include', 'web._assets_bootstrap'),
+        'om_hospital/static/src/js/app.js',
+        "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+        ],
+},
 'images':['static/description/icon.png'],
 'installable': True,
 'application': True,

@@ -16,3 +16,7 @@ class Hospital(http.Controller):
         # request.env['other.model'].sudo().create(other_val)
 
         return request.render('om_hospital.patient_thanks',{})
+    
+    # @http.route('/appointment', type='http', auth="public", website=True)
+    # def appointment_page(self):
+    #     return request.render("om_hospital.appointment")
