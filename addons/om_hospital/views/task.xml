@@ -8,6 +8,7 @@
             <tree>
                 <field name="title"/>
                 <field name="color" widget="color"/>
+                <field name="isCompleted"/>
             </tree>
         </field>
     </record>
@@ -22,6 +23,7 @@
                         <group>
                             <field name="title"/>                            
                             <field name="color" widget="color"/>                            
+                            <field name="isCompleted"/>                            
                         </group>
                     </group>
                 </sheet>

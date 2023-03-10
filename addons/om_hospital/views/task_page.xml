@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <odoo>
-    <record id="appointment" model="website.page">
+    <record id="task" model="website.page">
         <!-- yaslai controller chaidaina -->
-        <field name="name">Appointments</field>
+        <field name="name">Task</field>
         <field name="type">qweb</field>
-        <field name="url">/appointment</field>
+        <field name="url">/task</field>
         <field name="is_published">True</field>
         <field name="website_published">True</field>
-        <field name="key">om_hospital.appointment_page</field>
+        <field name="key">om_hospital.task_page</field>
         <field name="arch" type="xml">
-            <t name="Appointment" t-name="om_hospital.appointment">
+            <t name="Task" t-name="om_hospital.task">
                 <t t-call="website.layout">
                     <div id="wrap">
                      <div class="oe_structure">
                         <div class="container">
-                             <div id="appointment_root"></div>
+                             <div id="task_root"></div>
                         </div>
                         </div>
                     </div>

@@ -8,3 +8,4 @@ class HospitalTask(models.Model):
 
     title = fields.Char(string="Title")
     color = fields.Char(string="Color")
+    isCompleted = fields.Boolean(string="isCompleted")
