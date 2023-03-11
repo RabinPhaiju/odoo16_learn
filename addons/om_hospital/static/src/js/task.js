@@ -8,7 +8,8 @@ class Task extends Component {
     <li t-attf-style="background-color:#{state.color}" class="d-flex align-items-center justify-content-between border-bottom p-1 border rounded mb-1">
       <div t-if="state.isEditing" class="d-flex align-items-center flex-grow-1 me-2">
         <input t-ref="text1" t-model="state.title" class="form-control me-2"/>
-        <input style="width:60px" type="color" class="form-control-lg border-0 bg-white m-0 form-control-color" id="color" t-att-value="state.color" t-model="state.color" title="Choose your color"/>
+        <input style="width:60px" type="color" class="form-control-lg border-0 bg-white m-0 form-control-color" 
+              id="color" t-model="state.color" title="Choose your color"/>
       </div>
       <div t-if="!state.isEditing" class="form-check form-switch fs-5 name-dark">
         <input class="form-check-input" type="checkbox" value="" role="switch" 
@@ -25,6 +26,10 @@ class Task extends Component {
           <i class="bi bi-check-lg"></i>
         </button>
         <button class="btn btn-danger" t-on-click="deleteTask"><i class="bi bi-trash"></i></button>
+      </div>
+      <div class="mx-2" t-if="state.isEditing">
+        <input t-att-value="state.title"/>
+        <input t-model="state.title"/>
       </div>
     </li>
     `
@@ -80,12 +85,13 @@ class Root extends Component {
     <div class="m-0 p-2 bg-white rounded">
         <div class="input-group-lg bg-white rounded border d-flex w-100 align-items-center">
         <input type="title" class="form-control-lg fs-3 flex-fill border-0" placeholder="Add your new task" aria-label="Add your new task" id="title" name="title" aria-describedby="button-addon2" 
-            t-att-value="state.title" t-model="state.title"/>
+            t-model="state.title"/>
         <input type="color" class="form-control-lg border-0 bg-white m-0 form-control-color" id="color" title="Choose your color" 
-            t-att-value="state.color" t-model="state.color"/>
+            t-model="state.color"/>
         <button class="btn btn-primary" type="button" id="button-addon2" 
             t-on-click="addTask"><i class="bi bi-plus-lg fs-3"></i></button>
         </div>
+        <div><t t-esc="state.title"/></div>
 
         <ul class="tasks d-flex flex-column p-0 mt-4">
             <t t-foreach="tasks" t-as="task" t-key="task.id">
