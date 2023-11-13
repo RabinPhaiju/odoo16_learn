@@ -1,12 +1,9 @@
-# Readme
-
-
-## \# Build docker image using docker-compose
+# Build docker image using docker-compose
 1. cd into project root
 2. Run command `$ chmod +x odoo-docker/entrypoint.sh odoo-docker/wait-for-it.sh`
 3. Run command `$ docker-compose build --no-cache`
     * [OPTIONAL] For custom build args: `$ docker-compose build --no-cache --build-arg APT_MIRROR=http://ubuntu.ntc.net.np`
-4. Run commadn `$ ./bin/odoo start -i base -d odoo`
+4. Run command `$ ./bin/odoo start -i base -d odoo`
 
 ## \# Build docker image
 1. cd into **odoo-docker** directory `$ cd odoo-docker`
